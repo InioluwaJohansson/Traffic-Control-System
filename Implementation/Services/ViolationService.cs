@@ -8,21 +8,41 @@ namespace TrafficControlSystem.Implementation.Services;
 public class ViolationService : IViolationService
 {
     IViolationRepo _violationRepo;
-    public ViolationService(IViolationRepo violationRepo)
+    ICloudinaryService _cloudinaryService;
+    public ViolationService(IViolationRepo violationRepo, ICloudinaryService cloudinaryService)
     {
         _violationRepo = violationRepo;
+        _cloudinaryService = cloudinaryService;
     }
     public async Task<BaseResponse> CreateViolation(CreateViolationDto createViolationDto)
     {
-        if (createViolationDto != null)
+        if (createViolationDto.Image != null)
         {
+            if (createViolationDto.Image.Contains(","))
+            createViolationDto.Image = createViolationDto.Image.Substring(createViolationDto.Image.IndexOf(",") + 1);
+
+            byte[] imageBytes;
+
+            try
+            {
+                imageBytes = Convert.FromBase64String(createViolationDto.Image);
+            }
+            catch (FormatException)
+            {
+                throw new ArgumentException("Invalid base64 string.");
+            }
+
+            using var stream = new MemoryStream(imageBytes);
+
+            var cloudinaryResponse = await _cloudinaryService.UploadImageAsync($"{createViolationDto.LaneId}-{createViolationDto.Speed}.jpg", stream);
+
+            Console.WriteLine("Cloudinary Response: " + cloudinaryResponse);
             var violation = new Violation()
             {
-                VehicleNumber = createViolationDto.VehicleNumber,
                 LaneId = createViolationDto.LaneId,
                 ViolationTime = DateTime.UtcNow,
                 Speed = createViolationDto.Speed,
-                ImageUrl = createViolationDto.Image 
+                ImageUrl = cloudinaryResponse, 
             };
             await _violationRepo.Create(violation);
             return new BaseResponse
@@ -39,7 +59,7 @@ public class ViolationService : IViolationService
     }
     public async Task<ViolationsResponse> GetAllViolations()
     {
-        var violations = await _violationRepo.GetAll();
+        var violations = await _violationRepo.GetAllViolations();
         if (violations != null && violations.Any())
         {
             return new ViolationsResponse
@@ -49,10 +69,14 @@ public class ViolationService : IViolationService
                 Violations = violations.OrderByDescending(x => x.ViolationTime).Select(x => new GetViolationDto
                 {
                     Id = x.Id,
-                    VehicleNumber = x.VehicleNumber,
                     LaneId = x.LaneId,
                     Speed = x.Speed,
-                    ViolationTime = x.ViolationTime
+                    ViolationTime = x.ViolationTime,
+                    LaneName = x.Lane.Name,
+                    SpeedLimit = x.Lane.MaxSpeed,
+                    ViolationDateString = x.ViolationTime.Date.ToString("yyyy-MM-dd"),
+                    ViolationTimeString = x.ViolationTime.TimeOfDay.ToString(),
+                    ImageUrl = x.ImageUrl
                 }).ToList()
             };
         }

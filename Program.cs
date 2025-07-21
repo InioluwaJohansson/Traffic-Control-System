@@ -15,6 +15,7 @@ builder.Services.AddCors(x => x.AddPolicy("Policies", c =>
 // Add services to the container.
 builder.Services.AddScoped<IImageRepo, ImageRepo>();
 builder.Services.AddScoped<ILaneRepo, LaneRepo>();
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 builder.Services.AddScoped<IViolationRepo, ViolationRepo>();
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<ILaneService, LaneService>();

@@ -50,7 +50,10 @@ public class TrafficDensityService : ITrafficDensityService
                     Id = x.Id,
                     LaneId = x.LaneId,
                     Density = x.Density,
-                    Date = x.Date
+                    Date = x.Date,
+                    traffic_status = x.traffic_status,
+                    density_percentage = x.density_percentage,
+                    
                 }).OrderBy(x => x.LaneId).ThenBy(x => x.Date).ToList()
             };
         }
