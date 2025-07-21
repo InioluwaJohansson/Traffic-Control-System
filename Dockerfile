@@ -1,8 +1,8 @@
-# Use the official .NET 6 SDK image for building
+# Use the official .NET SDK to build
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
-# Copy .csproj and restore as distinct layers
+# Copy csproj and restore as distinct layers
 COPY *.csproj ./
 RUN dotnet restore
 
@@ -10,8 +10,8 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Use a lighter runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+# Use a smaller runtime image for final container
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build /app/out .
 
