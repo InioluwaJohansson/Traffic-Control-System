@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Traffic_Control_System</RootNamespace>
+    <RestoreFallbackFolders />
   </PropertyGroup>
 
   <ItemGroup>
