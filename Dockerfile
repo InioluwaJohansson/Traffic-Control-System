@@ -15,8 +15,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Expose port 80 for Railway (you can also expose 443 if using HTTPS)
-EXPOSE 443
+# Expose port 7255 for Railway (you can also expose 443 if using HTTPS)
+EXPOSE 7255
 
 # Start the app
 ENTRYPOINT ["dotnet", "Traffic Control System.dll"]
