@@ -21,6 +21,8 @@ public class TrafficDensityService : ITrafficDensityService
             {
                 LaneId = createTrafficDensityDto.LaneId,
                 Density = createTrafficDensityDto.Density,
+density_percentage = 0,
+traffic_status = "",
                 Date = createTrafficDensityDto.Date
             };
             await _trafficDensityRepo.Create(trafficDensity);
