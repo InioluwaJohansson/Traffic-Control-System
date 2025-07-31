@@ -2,7 +2,7 @@ using TrafficControlSystem.Contracts;
 
 namespace TrafficControlSystem.Entities;
 
-public class TrafficDensitys : AuditableEntity
+public class TrafficDensity : AuditableEntity
 {
     public int Id { get; set; }
     public int LaneId { get; set; }

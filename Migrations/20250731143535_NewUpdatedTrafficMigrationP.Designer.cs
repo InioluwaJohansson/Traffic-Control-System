@@ -11,8 +11,8 @@ using TrafficControlSystem.Context;
 namespace Traffic_Control_System.Migrations
 {
     [DbContext(typeof(TrafficControlSystemContext))]
-    [Migration("20250720213929_TrafficMigrationsNew")]
-    partial class TrafficMigrationsNew
+    [Migration("20250731143535_NewUpdatedTrafficMigrationP")]
+    partial class NewUpdatedTrafficMigrationP
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,6 +103,54 @@ namespace Traffic_Control_System.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lanes");
+                });
+
+            modelBuilder.Entity("TrafficControlSystem.Entities.TrafficDensity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Density")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("LaneId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("density_percentage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("traffic_status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TrafficDensity");
                 });
 
             modelBuilder.Entity("TrafficControlSystem.Entities.Violation", b =>

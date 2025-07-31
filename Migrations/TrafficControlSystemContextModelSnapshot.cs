@@ -103,7 +103,7 @@ namespace Traffic_Control_System.Migrations
                     b.ToTable("Lanes");
                 });
 
-            modelBuilder.Entity("TrafficControlSystem.Entities.TrafficDensitys", b =>
+            modelBuilder.Entity("TrafficControlSystem.Entities.TrafficDensity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -148,7 +148,7 @@ namespace Traffic_Control_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TrafficDensitys");
+                    b.ToTable("TrafficDensity");
                 });
 
             modelBuilder.Entity("TrafficControlSystem.Entities.Violation", b =>

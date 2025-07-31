@@ -13,5 +13,5 @@ public class TrafficControlSystemContext : DbContext
     public DbSet<Violation> Violations { get; set; }
     public DbSet<Lane> Lanes { get; set; }
     public DbSet<Images> Images { get; set; }
-public DbSet<TrafficDensitys> TrafficDensitys { get; set; }
+    public DbSet<TrafficDensity> TrafficDensity { get; set; }
 }
