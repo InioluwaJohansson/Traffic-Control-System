@@ -24,7 +24,7 @@ public class TrafficDensityController : ControllerBase
         {
             return Ok(trafficDensity);
         }
-        return BadRequest(trafficDensity);
+        return Ok(trafficDensity);
     }
     // GET : GetAllTrafficDensitys
     [HttpGet("GetAllTrafficDensitys")]
@@ -35,6 +35,6 @@ public class TrafficDensityController : ControllerBase
         {
             return Ok(trafficDensitys);
         }
-        return BadRequest(trafficDensitys);
+        return Ok(trafficDensitys);
     }
 }
