@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TrafficControlSystem.Context;
 
 namespace TrafficControlSystem;
@@ -13,6 +14,7 @@ public class TBackgroundService : BackgroundService
     {
         using var vscope = _serviceScopeFactory.CreateScope();
         var context = vscope.ServiceProvider.GetRequiredService<TrafficControlSystemContext>();
+        await context.Database.MigrateAsync();
         await Task.CompletedTask;
     }
 }

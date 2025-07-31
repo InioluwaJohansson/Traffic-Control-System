@@ -17,7 +17,7 @@ public class TrafficDensityService : ITrafficDensityService
     {
         if (createTrafficDensityDto != null)
         {
-            var trafficDensity = new TrafficDensity()
+            var trafficDensity = new TrafficDensitys()
             {
                 LaneId = createTrafficDensityDto.LaneId,
                 Density = createTrafficDensityDto.Density,

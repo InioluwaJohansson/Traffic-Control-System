@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrafficControlSystem.Context;
 
@@ -10,9 +11,10 @@ using TrafficControlSystem.Context;
 namespace Traffic_Control_System.Migrations
 {
     [DbContext(typeof(TrafficControlSystemContext))]
-    partial class TrafficControlSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20250731133452_NewUpdatedTrafficMigration3")]
+    partial class NewUpdatedTrafficMigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
