@@ -11,8 +11,8 @@ using TrafficControlSystem.Context;
 namespace Traffic_Control_System.Migrations
 {
     [DbContext(typeof(TrafficControlSystemContext))]
-    [Migration("20250731143535_NewUpdatedTrafficMigrationP")]
-    partial class NewUpdatedTrafficMigrationP
+    [Migration("20250731144614_XMigration")]
+    partial class XMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -25,11 +25,11 @@ builder.Services.AddScoped<ITrafficDensityService, TrafficDensityService>();
 builder.Services.AddHostedService<TBackgroundService>();
 builder.Services.AddHttpContextAccessor();
 var connectionString = builder.Configuration.GetConnectionString("TrafficControlSystemContext");
-connectionString = $"Server={Environment.GetEnvironmentVariable("MYSQLHOST")};" +
-                       $"Port={Environment.GetEnvironmentVariable("MYSQLPORT")};" +
-                       $"Database={Environment.GetEnvironmentVariable("MYSQLDATABASE")};" +
-                       $"User={Environment.GetEnvironmentVariable("MYSQLUSER")};" +
-                       $"Password={Environment.GetEnvironmentVariable("MYSQLPASSWORD")};";
+// connectionString = $"Server={Environment.GetEnvironmentVariable("MYSQLHOST")};" +
+//                        $"Port={Environment.GetEnvironmentVariable("MYSQLPORT")};" +
+//                        $"Database={Environment.GetEnvironmentVariable("MYSQLDATABASE")};" +
+//                        $"User={Environment.GetEnvironmentVariable("MYSQLUSER")};" +
+//                        $"Password={Environment.GetEnvironmentVariable("MYSQLPASSWORD")};";
 Console.WriteLine($"Connection String: {connectionString}");
 builder.Services.AddDbContext<TrafficControlSystemContext>(c => c.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 

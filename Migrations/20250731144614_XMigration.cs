@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Traffic_Control_System.Migrations
 {
-    public partial class NewUpdatedTrafficMigrationP : Migration
+    public partial class XMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
